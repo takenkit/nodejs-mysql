@@ -29,4 +29,11 @@ app.get('/', (req, res) => {
     );
 });
 
-app.listen(3000);//sudo mysql -u root -p 
+app.listen(3000, () => {
+    console.log(`Server runnning at http://localhost:3000/`);
+});
+
+/*
+    ファイアウォールを有効にしていると接続できない
+    ejsモジュールが見つからない
+*/
