@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
         'select * from users',
         (error, results) => {
             console.log(results);
-            res.render('hello.ejs');
+            res.send(results);
         }
     );
 });
@@ -32,8 +32,3 @@ app.get('/', (req, res) => {
 app.listen(3000, () => {
     console.log(`Server runnning at http://localhost:3000/`);
 });
-
-/*
-    ファイアウォールを有効にしていると接続できない
-    ejsモジュールが見つからない
-*/
