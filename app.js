@@ -1,7 +1,9 @@
 const express = require('express');
+const ejs = require('ejs');
 const mysql = require('mysql');
 
 const app = express();
+app.set('ejs', ejs.renderFile);
 
 const connection = mysql.createConnection({
     host: 'localhost',
@@ -15,8 +17,6 @@ connection.connect((err) => {
         console.log('error connecting: ' + err.stack);
         return;
     }
-
-    console.log('success');
 });
 
 app.get('/', (req, res) => {
@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
         'select * from users',
         (error, results) => {
             console.log(results);
-            res.send(results);
+            res.render('index.ejs', { content: results })
         }
     );
 });
