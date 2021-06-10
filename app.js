@@ -12,7 +12,6 @@ const setting = {
     database: 'list_app'
 };
 
-
 app.get('/', (req, res) => {
     const connection = mysql.createConnection(setting);
 
@@ -38,8 +37,7 @@ app.get('/add', (req, res) => {
 });
 
 app.post('/add', (req, res) => {
-    const name = req.body;
-    console.log(req);
+    const name = req.body;// body-parserが必要！
     const post = { 'name': req.body.name };
     const connection = mysql.createConnection(setting);
 
