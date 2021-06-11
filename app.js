@@ -1,8 +1,10 @@
 const express = require('express');
 const ejs = require('ejs');
 const mysql = require('mysql');
+const bodyParser = require('body-parser');
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
 app.set('ejs', ejs.renderFile);
 
 const setting = {
@@ -37,8 +39,8 @@ app.get('/add', (req, res) => {
 });
 
 app.post('/add', (req, res) => {
-    const name = req.body;// body-parserが必要！
-    const post = { 'name': req.body.name };
+    const name = req.body.name;
+    const post = { 'name': name };
     const connection = mysql.createConnection(setting);
 
     connection.connect((error) => {
@@ -51,7 +53,7 @@ app.post('/add', (req, res) => {
         'insert into users set ?', post,
         (error, results) => {
             console.log(results);
-            res.redirect('add');
+            res.redirect('./');
         } 
     );
 
@@ -72,7 +74,7 @@ app.post('/delete', (req, res) => {
         'delete from users where id=?', id,
          (error, results) => {
         console.log(results);
-        res.redirect('/');
+        res.redirect('./');
     });
     
     connection.end();
