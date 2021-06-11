@@ -6,9 +6,10 @@
 </head>
  
 <body>
-    <form action="add" method="post">
-        <input type="text" name="name" value="name">
-        <button type="submit" name="button">Post</button>
+    <div class="container">
+    <form action="add" method="post" class=”form-group”>
+        <input type="text" name="name" class=”form-control” placeholder="Please insert your name here. ">
+        <button type="submit" name="button" class="btn btn-outline-dark">Post</button>
     </form>
  
     <% if(errorMessage) { %>
@@ -20,7 +21,7 @@
         <% } %>
     </ul>
     <% } %>
- 
+    </div>
 </body>
  
 </html>

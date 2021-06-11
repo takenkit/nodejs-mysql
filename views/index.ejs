@@ -18,15 +18,15 @@
                         <tr>
                             <% let obj = content[i]; %>
                             <th>
-                               <%= obj.id %> 
+                               <%= Number(i) + 1 %> 
                             </th>
                             <th>
                                 <%= obj.name %>
                             </th>
                             <th>
-                                <form action="delete" method="post">
+                                <form action="delete" method="post" class=”form-group”>
                                     <input type="hidden" name="id" value="<%= obj.id %>">
-                                    <button type="submit name="button">Delete</button>
+                                    <button type="submit" name="button" class="btn btn-outline-dark">Delete</button>
                                 </form>
                             </th>
                         </tr>
