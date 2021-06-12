@@ -60,6 +60,50 @@ app.post('/add', (req, res) => {
     connection.end();
 });
 
+app.get('/edit', (req, res) => {
+    const id = req.query.id;
+    const name = req.query.name;
+    const connection = mysql.createConnection(setting);
+    connection.connect((error) => {
+        if (error) {
+            console.log('error connecting: ' + error.stack);
+            return;
+        }
+    });
+    connection.query('select * from users where id=?', id,
+     (error, results) => {
+        const data = {
+            id: id,
+            name: name
+        }
+        res.render('edit.ejs', data );
+    });
+
+    connection.end();
+});
+
+app.post('/edit', (req, res) => {
+    const id = req.body.id;
+    const name = req.body.name;
+    const post = { 'name': name };
+    const connection = mysql.createConnection(setting);
+
+    connection.connect((error) => {
+        if (error) {
+            console.log('error connecting: ' + error.stack);
+            return;
+        }
+    });
+    connection.query(
+        'update users set ? where id = ?', [post, id],
+         (error, results) => {
+        console.log(results);
+        res.redirect('./');
+    });
+    
+    connection.end();
+});
+
 app.post('/delete', (req, res) => {
     const id = req.body.id;
     const connection = mysql.createConnection(setting);

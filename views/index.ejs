@@ -5,15 +5,18 @@
     </head>
     <body>
         <div class="container">
+            <form action="add" method="get" class="form-group" style="float: right; margin: 10px;">
+                <button type="submit" name="add" class="btn btn-outline-dark">Add</button>
+            </form>
             <table class="table" style="margin-top:50px;">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">id</th>
                         <th scope="col">name</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <a href="add">Add</a>
                     <% for(let i in content) { %>
                         <tr>
                             <% let obj = content[i]; %>
@@ -24,9 +27,13 @@
                                 <%= obj.name %>
                             </th>
                             <th>
-                                <form action="delete" method="post" class=”form-group”>
+                                <form action="delete" method="post" class=”form-group” style="float:right;">
                                     <input type="hidden" name="id" value="<%= obj.id %>">
                                     <button type="submit" name="button" class="btn btn-outline-dark">Delete</button>
+                                </form>
+                                <form action="edit" method="get" class=”form-group” style="float:right; margin-right: 10px;">
+                                    <input type="hidden" name="id" value="<%= obj.id %>">
+                                    <button type="submit" name="button" class="btn btn-outline-dark">Edit</button>
                                 </form>
                             </th>
                         </tr>
