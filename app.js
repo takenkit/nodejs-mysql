@@ -62,7 +62,6 @@ app.post('/add', (req, res) => {
 
 app.get('/edit', (req, res) => {
     const id = req.query.id;
-    const name = req.query.name;
     const connection = mysql.createConnection(setting);
     connection.connect((error) => {
         if (error) {
@@ -74,7 +73,7 @@ app.get('/edit', (req, res) => {
      (error, results) => {
         const data = {
             id: id,
-            name: name
+            name: results[0].name
         }
         res.render('edit.ejs', data );
     });
