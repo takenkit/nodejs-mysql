@@ -1,11 +1,12 @@
-const express = require('express');
-const ejs = require('ejs');
+// Nodejs + MySQL CRUD Application with Bild-in Modules
+'use strict';
+const http = require('http');
+const fs = require('fs');
+const index = fs.readFileSync('index.html');
+const add = fs.readFileSync('add.html');
+const edit = fs.readFileSync('edit.html');
 const mysql = require('mysql');
-const bodyParser = require('body-parser');
-
-const app = express();
-app.use(bodyParser.urlencoded({ extended: false }));
-app.set('ejs', ejs.renderFile);
+const server = http.createServer();
 
 const setting = {
     host: 'localhost',
@@ -13,6 +14,8 @@ const setting = {
     password: 'xxxx',
     database: 'list_app'
 };
+
+// work in progress..
 
 app.get('/', (req, res) => {
     const connection = mysql.createConnection(setting);
